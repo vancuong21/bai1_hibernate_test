@@ -1,4 +1,4 @@
-package com.vancuong;
+package com.vancuong.utils;
 
 // Class dung de: cung cap SessionRegistry
 

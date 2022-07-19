@@ -1,6 +1,8 @@
 package com.vancuong;
 
 import com.vancuong.entity.Product;
+import com.vancuong.repository.ProductRepository;
+import com.vancuong.utils.HibernateUtils;
 import org.hibernate.Session;
 
 import java.time.LocalDateTime;

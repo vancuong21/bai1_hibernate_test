@@ -1,6 +1,7 @@
-package com.vancuong;
+package com.vancuong.repository;
 
 import com.vancuong.entity.Product;
+import com.vancuong.utils.HibernateUtils;
 import jakarta.persistence.NoResultException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
