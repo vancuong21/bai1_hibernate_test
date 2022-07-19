@@ -4,43 +4,33 @@ import com.vancuong.entity.Product;
 import org.hibernate.Session;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        //testInsert();
+//        testInsert();
         //testSelectAndUpdate();
-        testSelectAndDelete();
+//        testSelectAndDelete();
+
+        List<Product> result = ProductRepository.findByName("san pham 1");
+        for (Product product : result) {
+            System.out.println(result);
+        }
     }
 
     public static void testSelectAndDelete() {
-        Session session = HibernateUtils.getSessionFactory().openSession();
-        session.getTransaction().begin();
-
-        Product product = session.find(Product.class, 2);
-        if(product != null) {
-            session.delete(product);
+        Product product = ProductRepository.findById(4);
+        if (product != null) {
+            ProductRepository.delete(product);
         }
-
-        session.getTransaction().commit();
     }
 
     public static void testSelectAndUpdate() {
-        Session session = HibernateUtils.getSessionFactory().openSession();
-        session.getTransaction().begin();
-
-        Product product = session.find(Product.class, 2);
+        Product product = ProductRepository.findById(2);
         if (product != null) {
-            product.setPrice(8888.88);
-            product.setUpdateDate(LocalDateTime.now());
-            product.setName("Update name");
-
-            session.saveOrUpdate(product);
-            //session.merge(product);
+            product.setName("AAAAAAAAAAAAAAA");
+            ProductRepository.saveOrUpdate(product);
         }
-
-        session.getTransaction().commit();
-
-        System.out.println(product);
     }
 
     public static void testInsert() {
@@ -55,7 +45,7 @@ public class Main {
         product.setUpdateDate(LocalDateTime.now());
 
         //session.save(product);
-        session.persist(product); // lưu các đối tượng thực thể
+        session.saveOrUpdate(product); // lưu các đối tượng thực thể
 
         session.getTransaction().commit();
     }
